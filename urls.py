@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'fitched.views.home', name='home'),
     # url(r'^fitched/', include('fitched.foo.urls')),
     url(r'^index/', 'alpha.views.index'),
+    url(r'^register/', 'alpha.views.register'),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
