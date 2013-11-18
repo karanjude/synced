@@ -81,7 +81,7 @@ def update_profile(u_id):
         print e
 
 def get_processed_object(u_id):
-    user_processed = UserProcessed.objects.all()
+    user_processed = UserProcessed.objects.filter(processed_for = u_id)
     if len(user_processed) == 1:
         return user_processed[0]
 
