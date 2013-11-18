@@ -19,8 +19,11 @@ class FBUser(models.Model):
     access_token = models.CharField(max_length=250)
     token_expired = models.BooleanField(default = False)
 
+    def has_access_token(self):
+        return self.access_tokenis is not None
+
     def __str__(self):
-        return "%s %s" % (self.id, self.name)
+        return unicode("%s %s" % (self.id, self.name))
 
 
 class FBFriend(models.Model):
@@ -29,4 +32,11 @@ class FBFriend(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return "%s %s" % (self.id, self.name)
+        return unicode("Friend %s %s" % (self.id, self.name))
+
+class UserProcessed(models.Model):
+    processed_for = models.ForeignKey(FBUser)
+    profile_processed = models.BooleanField(default=False)
+    friends_processed = models.BooleanField(default=False)
+    photos_processed = models.BooleanField(default=False)
+    
