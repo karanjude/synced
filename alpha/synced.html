@@ -8,7 +8,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style type="text/css">
 .container-fluid{
@@ -39,8 +39,24 @@
     var access_token = response.authResponse.accessToken;
     var csrf = $('[name="csrfmiddlewaretoken"]').val();
      $.ajax({type:"POST", url:"/syncedprogress/", data:{a_token: access_token, u_id: user_id, csrfmiddlewaretoken: csrf }})
-     .done(function(msg){console.log(msg);});
+     .done(function(msg){
+       if(msg.progress.friends_processed)
+         $("#synced_container").append("<p class='text-primary'>friends processed</p>");
+       else
+         $("#synced_container").append("<p class='text-danger'>friends processing</p>");
 
+       if(msg.progress.photos_processed)
+         $("#synced_container").append("<p class='text-primary'>photos processed</p>");
+       else
+         $("#synced_container").append("<p class='text-danger'>photos processing</p>");
+
+       if(msg.progress.profile_processed)
+         $("#synced_container").append("<p class='text-primary'>profile processed</p>");
+       else
+         $("#synced_container").append("<p class='text-danger'>profile processing</p>");
+
+       console.log(msg);
+     });
 
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
