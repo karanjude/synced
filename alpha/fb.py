@@ -50,25 +50,33 @@ def update_user(u_id):
             
 
 def update_profile_for_friend(f, u_id):
-    url = "https://graph.facebook.com/%s?access_token=%s" % (u_id, f.access_token)
-    print "calling url " + url
-
-    usr_json = urllib.urlopen(url).read()
-    usr_obj = json.loads(usr_json)
-
-    print "usr obj %s" % (usr_obj)
+    found = False
     
-    if str(f.id) != usr_obj["id"]:
+    try:
+        f = FBUser.objects.get(pk = u_id)
+        found = True
+    except Exception as e:
+        pass
+
+    if not found:
+        url = "https://graph.facebook.com/%s?access_token=%s" % (u_id, f.access_token)
+        print "calling url " + url
+
+        usr_json = urllib.urlopen(url).read()
+        usr_obj = json.loads(usr_json)
+
+
+        print "usr obj %s" % (usr_obj)
+    
         f = FBUser(id = int(usr_obj["id"]))
+        f.name = usr_obj["name"]
+        f.link = usr_obj["link"]
+        f.gender = usr_obj["gender"]
+        f.locale = usr_obj["locale"]
 
-    f.name = usr_obj["name"]
-    f.link = usr_obj["link"]
-    f.gender = usr_obj["gender"]
-    f.locale = usr_obj["locale"]
-
-    print ("About to save usr %s " % (f)).encode('utf-8')
-    f.save()
-    print ("usr saved %s" % (f)).encode('utf-8')
+        print ("About to save usr %s " % (f)).encode('utf-8')
+        f.save()
+        print ("usr saved %s" % (f)).encode('utf-8')
 
 
 def update_profile(u_id):
