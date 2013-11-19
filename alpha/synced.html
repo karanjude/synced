@@ -27,11 +27,6 @@
 
 </style>
 
-</head>
-<body>
-<div id="fb-root"></div>
-
-
 <script>
   function handle_fb_login(response){
     // Here we specify what we do with the response anytime this event occurs. 
@@ -39,7 +34,14 @@
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
-      log_into_app(response);
+
+    var user_id = response.authResponse.userID;
+    var access_token = response.authResponse.accessToken;
+    var csrf = $('[name="csrfmiddlewaretoken"]').val();
+     $.ajax({type:"POST", url:"/syncedprogress/", data:{a_token: access_token, u_id: user_id, csrfmiddlewaretoken: csrf }})
+     .done(function(msg){console.log(msg);});
+
+
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -58,13 +60,6 @@
       alert('not logged in fb');
     }
   }
-
-  function fb_login(){
-    FB.login(function(response){
-     handle_fb_login(response);
-    }, {scope: 'user_about_me,friends_about_me,user_birthday,friends_birthday,user_photos,friends_photos,user_relationships,friends_relationships,user_relationship_details,friends_relationship_details'});
-  }
-
 
   // Additional JS functions here
   window.fbAsyncInit = function() {
@@ -95,31 +90,24 @@
      ref.parentNode.insertBefore(js, ref);
    }(document));
 
-function log_into_app(response) {
-    var user_id = response.authResponse.userID;
-    var access_token = response.authResponse.accessToken;
-    var csrf = $('[name="csrfmiddlewaretoken"]').val();
-    $.ajax({type:"POST", url:"/register/", data:{a_token: access_token, u_id: user_id, csrfmiddlewaretoken: csrf }})
-     .done(function(msg){console.log('data saved for id: ' + msg);});
-   window.location = "/synced/?uid=" + user_id;
-}
-
 </script>
 
-<div class="container-fluid">
-    <div class="row-fluid" >
-        <div class="centering text-center" >
-<h2 class="text-center text-info">Synced!</h2>
-<form>
-{% csrf_token %}
-<!--
-<fb:login-button perms="user_about_me,friends_about_me,user_birthday,friends_birthday,user_photos,friends_photos,user_relationships,friends_relationships,user_relationship_details,friends_relationship_details" show-faces="true" width="200" max-rows="1" size="large"></fb:login-button>
--->
-<button class="btn btn-default btn-primary btn-block" type="submit" id="fb_sign_in" onclick="fb_login();return false;">Sign in</button>
-</form>
+</head>
+<body>
+<div id="fb-root"></div>
 
+<div class="container">
+        <div class="text-center" id="synced_container">
+
+<h2 class="text-center text-info">Lets Sync!</h2>
+{% csrf_token %}
+<input type="hidden" id="user_id" value="{{ user_id }}" />
         </div>
-    </div>
 </div>
+
+<script>
+$(document).ready(function(){
+});
+</script>
 
 </body></html>
