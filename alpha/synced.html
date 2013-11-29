@@ -28,6 +28,8 @@
 </style>
 
 <script>
+  var all_processed = false;
+
   function handle_fb_login(response){
     // Here we specify what we do with the response anytime this event occurs. 
     if (response.status === 'connected') {
@@ -40,21 +42,18 @@
     var csrf = $('[name="csrfmiddlewaretoken"]').val();
      $.ajax({type:"POST", url:"/syncedprogress/", data:{a_token: access_token, u_id: user_id, csrfmiddlewaretoken: csrf }})
      .done(function(msg){
-       if(msg.progress.friends_processed)
-         $("#synced_container").append("<p class='text-primary'>friends processed</p>");
-       else
-         $("#synced_container").append("<p class='text-danger'>friends processing</p>");
 
-       if(msg.progress.photos_processed)
-         $("#synced_container").append("<p class='text-primary'>photos processed</p>");
-       else
-         $("#synced_container").append("<p class='text-danger'>photos processing</p>");
+         var processed = true;
 
-       if(msg.progress.profile_processed)
-         $("#synced_container").append("<p class='text-primary'>profile processed</p>");
-       else
-         $("#synced_container").append("<p class='text-danger'>profile processing</p>");
+       if(!msg.progress.friends_processed || !msg.progress.photos_processed || !msg.progress.profile_processed)
+         processed = false;
 
+       if(!processed){
+         $("#progress").append("<img src='/s/busy.gif' />");
+         $("#progress").append("<p class='text-danger'>processing information</p>"); 
+       }else{
+         $("#preferences").show();
+       }
        console.log(msg);
      });
 
@@ -118,11 +117,38 @@
 <h2 class="text-center text-info">Lets Sync!</h2>
 {% csrf_token %}
 <input type="hidden" id="user_id" value="{{ user_id }}" />
+
+<div id="progress" ></div>
+
+<div id="preferences">
+<h4 class='text-center text-info'>Choose your preferences</h4>
+<form>
+<div class="radio-inline">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="female" checked>
+    Female
+  </label>
+</div>
+<div class="radio-inline">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="male">
+    Male
+  </label>
+</div>
+<div>
+<button class="btn btn-primary" type="submit" >Start</button>
+</div>
+</form>
+</div>
+
+
         </div>
+
 </div>
 
 <script>
 $(document).ready(function(){
+         $("#preferences").hide();
 });
 </script>
 

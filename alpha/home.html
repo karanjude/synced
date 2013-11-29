@@ -101,7 +101,7 @@ function log_into_app(response) {
     var csrf = $('[name="csrfmiddlewaretoken"]').val();
     $.ajax({type:"POST", url:"/register/", data:{a_token: access_token, u_id: user_id, csrfmiddlewaretoken: csrf }})
      .done(function(msg){console.log('data saved for id: ' + msg);});
-   window.location = "/synced/?uid=" + user_id;
+   //window.location = "/synced/?uid=" + user_id;
 }
 
 </script>

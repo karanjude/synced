@@ -40,3 +40,6 @@ class UserProcessed(models.Model):
     friends_processed = models.BooleanField(default=False)
     photos_processed = models.BooleanField(default=False)
     
+class FBPhoto(models.Model):
+    processed_for = models.ForeignKey(FBUser)
+    photo_url = models.CharField(max_length=150)
