@@ -156,3 +156,30 @@ a, a:hover
     padding: 100px 20px 50px 20px;
     margin: 0 auto;
 }
+
+#popups
+{
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+a.close
+{
+    border-radius: 10px;
+    background: #ccc;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    line-height: 20px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}

@@ -39,6 +39,23 @@ $('body').removeClass( this.id );
 }
 );
 
+
+$('#popup-1')
+.on(
+'opening.mm',
+function()
+{
+$('#home').addClass( 'hide' );
+}
+).on(
+'closing.mm',
+function()
+{
+$('#home').removeClass( 'hide' );
+}
+);
+
+
 $('a.back')
 .on(
 'click',
@@ -49,6 +66,20 @@ $('#page-left-friends, #page-left-images, #page-right-posts, #page-right-videos'
 }
 );
 
+
+var options = {
+classes: 'mm-light',
+modal: true
+};
+
+options.position = 'bottom';
+options.zposition = 'front';
+$('#popup-1').mmenu( options );
+
+
+$('a.close').click(function() {
+$(this).closest( '.mm-menu' ).trigger( 'close' );
+});
 
 });
 
@@ -88,7 +119,7 @@ $('#page-left-friends, #page-left-images, #page-right-posts, #page-right-videos'
 
 	  <div class="menu-panel">
 	    <div class="list-item">
-	      <a href="#">Close-ring</a>
+	      <a href="#popup-1">Close-ring</a>
 	    </div>
 	    <div class="list-item">
 	      <a href="#">Likeables</a>
@@ -179,6 +210,17 @@ $('#page-left-friends, #page-left-images, #page-right-posts, #page-right-videos'
 
 	</div>
       </div>
+
+	<div id="popup-1" class="tip">
+	  <div>
+	    <div>
+	      <a href="#" class="close">x</a>
+	      Popup
+fdsfsdf
+	    </div>
+	  </div>
+	</div>
+	
 
 
 <nav id="menu-left">
