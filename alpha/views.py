@@ -14,7 +14,7 @@ import fb
 def index(request):
     c = {}
     c.update(csrf(request))
-    return render_to_response('home.html',c)
+    return render_to_response('index.html',c)
 
 def synced(request):
     c = {}

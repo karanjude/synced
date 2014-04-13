@@ -1,0 +1,158 @@
+html, body
+{
+    height:100%;
+	padding: 0;
+	margin: 0;
+}
+body {
+	background-color: #f9f9f9;
+	font-family: Arial, Helvetica, Verdana;
+	font-size: 14px;
+	line-height: 22px;
+	color: #333;
+	-webkit-text-size-adjust: none;
+}
+body.page-left-friends, body.page-left-images{
+    background-position: left top;
+}
+body.page-right-posts, body.page-right-videos{
+    background-position: right top;
+}
+body *
+{
+	text-shadow: none;
+}
+h1, h2, h3, h4, h5, h6
+{
+	line-height: 1;
+	color: #330;
+	font-weight: bold;
+	margin: 20px 0 10px 0;
+}
+h1, h2, h3
+{
+	font-size: 18px;
+}
+h4, h5, h6
+{
+	font-size: 16px;
+}
+p
+{
+	margin: 0 0 10px 0;
+}
+a, a:link, a:active, a:visited, a:hover
+{
+	color: #333;
+	text-decoration: underline;
+}
+pre
+{
+	font-size: 12px;
+	width: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+#page nav
+{
+	display: none;
+}
+
+a, a:hover
+{
+    color: #FF8286;;
+    text-decoration: none;
+}
+
+.header
+{
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    font-size: 15px;
+    line-height: 40px;
+    padding: 0 10px;
+    margin: 0 20px;
+    position: relative;
+}
+
+.list-item {
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    font-size: 15px;
+    line-height: 40px;
+    padding: 0 10px;
+    margin: 0 20px;
+    position: relative;
+
+}
+
+.header span.right {
+    color: #FF8286;
+    float:left;
+}
+
+
+.header span.left {
+    color: #FF8286;
+    float:right;
+}
+
+
+.header a
+{
+    position: absolute;
+    right: 10px;
+    
+}
+.header a:first-child
+{
+    right: auto;
+    left: 10px;
+}
+#links
+{
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    margin-top: 60px;
+    padding: 10px 0;
+}
+#links a
+{
+    display: inline-block;
+    width: 45%;
+}
+.panel
+{
+    text-align: center;
+    font-weight:100;
+    max-width: 400px;
+    padding: 100px 20px 50px 20px;
+    margin: 0 auto;
+}
+.mm-menu
+{
+    background: none !important;
+    color: #FF8286;
+}
+
+.mm-menu > .mm-panel
+{
+    padding-top: 0;
+}
+
+.panel
+{
+    text-align: center;
+    font-weight:100;
+    max-width: 400px;
+    padding: 100px 20px 50px 20px;
+    margin: 0 auto;
+}
+
+.menu-panel
+{
+    max-width: 400px;
+    padding: 100px 20px 50px 20px;
+    margin: 0 auto;
+}

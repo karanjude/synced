@@ -1,0 +1,208 @@
+<html>
+<head>
+<meta content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" name="viewport">
+<link type="text/css" rel="stylesheet" href="/static/css/demo.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/static/jQuery.mmenu-master/src/css/jquery.mmenu.all.css" />
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="/static/jQuery.mmenu-master/src/js/jquery.mmenu.min.all.js"></script>
+<script>
+
+$(function() {
+
+var options = {
+classes: 'mm-fullscreen',
+zposition: 'next',
+moveBackground: false
+};
+
+$('#page-left-friends').mmenu( options );
+$('#page-left-images').mmenu( options );
+
+options.position = 'right',
+
+$('#page-right-posts').mmenu( options );
+$('#page-right-videos').mmenu( options );
+
+$('#page-left-friends, #page-left-images, #page-right-posts, #page-right-videos')
+.on(
+'opening.mm',
+function()
+{
+$('body').addClass( this.id );
+}
+).on(
+'closing.mm',
+function()
+{
+$('body').removeClass( this.id );
+}
+);
+
+$('a.back')
+.on(
+'click',
+function( e )
+{
+e.preventDefault();
+$('#page-left-friends, #page-left-images, #page-right-posts, #page-right-videos').trigger( 'close.mm' );
+}
+);
+
+
+});
+
+</script>
+</head>
+
+
+<body>
+<div id="page"> <!-- the wrapper -->
+      <div class="header">
+	Home
+      </div>
+
+      <div id="home" class="panel">
+	<div>
+	  <div class="list-item">
+	    <a href="#page-left-friends">Friends</a>
+	  </div>
+	  <div class="list-item">
+	    <a href="#page-right-posts">Posts</a>
+	    </div>
+	  <div class="list-item">
+	    <a href="#page-left-images">Images</a>
+	    </div>
+	  <div class="list-item">
+	    <a href="#page-right-videos">Videos</a>
+	    </div>
+	</div>
+      </div>
+
+      <div id="page-left-friends">
+	<div>
+	  <div class="header">
+	    <span class="right">Friends</span>
+	    <a href="#" class="back">back &rsaquo;</a>
+	  </div>
+
+	  <div class="menu-panel">
+	    <div class="list-item">
+	      <a href="#">Close-ring</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Likeables</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Commenters</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Stalkers</a>
+	    </div>
+	  </div>
+
+	</div>
+      </div>
+
+      <div id="page-left-images">
+	<div>
+	  <div class="header">
+	    <span class="right">Images</span>
+	    <a href="#" class="back">back &rsaquo;</a>
+	    </div>
+
+	  <div class="menu-panel">
+	    <div class="list-item">
+	      <a href="#">Popular</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Hot-shares</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Likeables</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Commenters</a>
+	    </div>
+	  </div>
+
+	</div>
+      </div>
+
+
+      <div id="page-right-posts">
+	<div>
+	  <div class="header">
+	    <a href="#" class="back">&lsaquo; back</a>
+	    <span class="left">Posts</span>
+	    </div>
+
+	  <div class="menu-panel">
+	    <div class="list-item">
+	      <a href="#">Popular</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Hot-shares</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Likeables</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Commenters</a>
+	    </div>
+	  </div>
+
+	</div>
+      </div>
+
+      <div id="page-right-videos">
+	<div>
+	  <div class="header">
+	    <a href="#" class="back">&lsaquo; back</a>
+	    <span class="left">Videos</span>
+	    </div>
+
+	  <div class="menu-panel">
+	    <div class="list-item">
+	      <a href="#">Popular</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Hot-shares</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Likeables</a>
+	    </div>
+	    <div class="list-item">
+	      <a href="#">Commenters</a>
+	    </div>
+	  </div>
+
+	</div>
+      </div>
+
+
+<nav id="menu-left">
+   <ul>
+
+     <li>
+       <span>Friends</span>
+       <ul>
+	 <li class="img"><a href="#">Close</a></li>
+	 <li class="img"><a href="#">Popular</a></li>
+	 </ul>
+       </li>
+
+     <li>
+       <span>Posts</span>
+       <ul>
+	 <li class="img"><a href="#">Most Liked</a></li>
+	 <li class="img"><a href="#">Most Shared</a></li>
+	 </ul>
+       </li>
+
+   </ul>
+</nav>
+
+</div>
+</body>
+</html>
